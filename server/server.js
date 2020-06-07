@@ -33,7 +33,7 @@ if (process.env.NODE_ENV === 'production') {
 
 ///TEST FOR DEV
 app.get('/', (req, res) => {
-  res.status(200).sendFile(path.resolve(__dirname, '../client/index.html'));
+  res.status(200).sendFile(path.resolve(__dirname, '../index.html'));
   // res.send('HOME')
 });
 
