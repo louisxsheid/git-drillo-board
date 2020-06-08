@@ -1,17 +1,52 @@
-const router = require('express').Router();
-const db = require('../db/postgres');
-require('dotenv/config');
+const router = require("express").Router();
+const db = require("../db/postgres");
+require("dotenv/config");
+
+// What is this route used for? (KP)
 
 // Bring in controllers
 const dbController = require('../controllers/dbController');
 const taskController = require('../controllers/taskController.js');
 
 /**
+<<<<<<< HEAD
+=======
+ * @route   GET /api
+ * @desc    Testing GET requests for api route
+ * @access  Public
+ */
+router.get("/", (req, res) => {
+  res.sendStatus(200);
+});
+
+// What is this route used for? (KP)
+
+/**
+ * @route   GET /api
+ * @desc    Testing GET requests for api route
+ * @access  Public
+ */
+router.post("/", (req, res) => {
+  res.send("Hitting api POST endpoint");
+});
+
+// /**
+//  * @route   POST /api/create-project
+//  * @desc    Adds the project information to projects and users_projects tables
+//  * @desc    and adds associated collaborators to users and users_projects tables
+//  * @access  Public (should be private)
+//  */
+// router.post('/create-project/'), (req,res,next) => {
+
+// }
+
+/**
+>>>>>>> ee32f6fa6a66b820d01e8a58a8c58b34ec1e52d4
  * @route   GET /api/projects/
  * @desc    Returns an array of projects associated with a particular user
  * @access  Public (should be private)
  */
-router.get('/projects/', async (req, res, next) => {
+router.get("/projects/", async (req, res, next) => {
   try {
     // User ID is stored in the userId cookie
     const id = req.cookies.userId;
@@ -31,7 +66,7 @@ router.get('/projects/', async (req, res, next) => {
  * @desc    Returns all tasks associated with a particular project in two arrays based on status
  * @access  Public (should be private)
  */
-router.get('/tasks/:project_id', async (req, res) => {
+router.get("/tasks/:project_id", async (req, res) => {
   try {
     const id = req.params.project_id;
     const inProgressQuery = `
