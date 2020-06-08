@@ -44,10 +44,26 @@ export function createTask(id, task) {
  * (Hits same endpoint as GET_PROJECT_TASKS)
  * @param {number} id The project id
  */
-export function refreshTasks(id) {
+// export function refreshTasks(id) {
+//   return function (dispatch) {
+//     axios
+//       .get(`/api/tasks/${id}`)
+//       .then(result =>
+//         dispatch({
+//           type: REFRESH_TASKS,
+//           payload: result.data,
+//         })
+//       )
+//       .catch(err => console.log('ERROR IN REFRESH_TASKS', err));
+//   };
+// }
+
+
+export function refreshTasks() {
   return function (dispatch) {
+    console.log('REFRESH TASKS')
     axios
-      .get(`/api/tasks/${id}`)
+      .get(`/api/refresh`)
       .then(result =>
         dispatch({
           type: REFRESH_TASKS,

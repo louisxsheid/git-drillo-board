@@ -10,6 +10,7 @@ import { connect } from 'react-redux';
 import { getProjects, createProject } from '../actions/dashboardActions';
 import Dashboard from '../components/Dashboard.jsx';
 import TitleBar from '../components/TitleBar.jsx';
+import { refreshTasks }  from '../actions/projectActions.js';
 
 class DashboardContainer extends React.Component {
   componentDidMount() {
@@ -31,7 +32,7 @@ class DashboardContainer extends React.Component {
   }
 
   refresh = () => {
-    console.log('"refresh"');
+    
   }
 
   render() {
@@ -52,6 +53,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   getProjects: () => dispatch(getProjects()),
   createProject: () => dispatch(createProject()),
+  refreshTasks: () => dispatch(refreshTasks())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(DashboardContainer);
