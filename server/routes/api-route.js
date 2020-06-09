@@ -2,13 +2,12 @@ const router = require("express").Router();
 const db = require("../db/postgres");
 require("dotenv/config");
 
-// What is this route used for? (KP)
-
 // Bring in controllers
 const dbController = require("../controllers/dbController");
 const taskController = require("../controllers/taskController.js");
 const authController = require("../controllers/authController.js");
 const projectController = require("../controllers/projectController.js");
+<<<<<<< HEAD
 
 /**
  * @route   GET /api
@@ -41,6 +40,10 @@ router.post("/", (req, res) => {
 // }
 
 /**
+=======
+
+/**
+>>>>>>> 6a526402611f9381141a642acee5ec117ba96fe8
  * @route   GET /api/projects/
  * @desc    Returns an array of projects associated with a particular user
  * @access  Public (should be private)
@@ -96,15 +99,23 @@ router.get("/tasks/:project_id", async (req, res) => {
  * @access  Public (should be private)
  */
 router.post(
+<<<<<<< HEAD
   '/create-project',
+=======
+  "/create-project",
+>>>>>>> 6a526402611f9381141a642acee5ec117ba96fe8
   dbController.getUserFromUserIdCookie,
   authController.getAccessToken,
   projectController.getRepos,
   projectController.doesRepoExist,
   projectController.getRepoOwner,
   projectController.getCollaborators,
+<<<<<<< HEAD
   // middleware
   /*dbController.getUserFromUserIdCookie,*/ async (req, res) => {
+=======
+  async (req, res) => {
+>>>>>>> 6a526402611f9381141a642acee5ec117ba96fe8
     try {
       // Temporary hardcoded user id -> waiting to test with the actual browser cookies
       // const userId = '14e33237-9cbb-43d3-9332-2e5641d712fb';
@@ -132,11 +143,14 @@ router.post(
         ON CONFLICT (githandle) DO NOTHING;`;
 
       // Add new project to projects table
-      const projectsResult = await db.query(projectsQuery, [projectName, userId]);
+      const projectsResult = await db.query(projectsQuery, [
+        projectName,
+        userId,
+      ]);
       const { id: projectId, repo } = projectsResult.rows[0];
 
-      // 
-      await db.query(usersProjectsQuery, [userId, projectId, 't']);
+      //
+      await db.query(usersProjectsQuery, [userId, projectId, "t"]);
 
       // Add collaborators to users_projects table and users table
       for (let githandle of collaborators) {
@@ -152,7 +166,7 @@ router.post(
       });
     } catch ({ message }) {
       res.status(400).json({
-        log: 'Something went wrong in POST /api/project route',
+        log: "Something went wrong in POST /api/project route",
         message,
       });
     }
@@ -164,7 +178,11 @@ router.post(
  * @desc    Create a new task for a particular project
  * @access  Public (should be private)
  */
+<<<<<<< HEAD
 router.post('/tasks/:project_id', async (req, res) => {
+=======
+router.post("/tasks/:project_id", async (req, res) => {
+>>>>>>> 6a526402611f9381141a642acee5ec117ba96fe8
   try {
     // Get project id
     const projectId = req.params.project_id;
@@ -197,11 +215,13 @@ router.post('/tasks/:project_id', async (req, res) => {
   }
 });
 
-router.get('/refresh', 
-taskController.getCommits, 
-taskController.parseCommits,
-(req, res) => {
-  res.sendStatus(200);
-});
+router.get(
+  "/refresh",
+  taskController.getCommits,
+  taskController.parseCommits,
+  (req, res) => {
+    res.sendStatus(200);
+  }
+);
 
 module.exports = router;
