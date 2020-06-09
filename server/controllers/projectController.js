@@ -39,7 +39,7 @@ projectController.doesRepoExist = (req, res, next) => {
       // set repoExists to true
       res.locals.repoExists = true;
       // save repo object in res.locals.targetRepo
-      res.locals.targetRepo = true;
+      res.locals.targetRepo = targetRepo;
     } else {
       // if the repo doesn't exist,
       res.locals.repoExists = false;
@@ -93,4 +93,4 @@ projectController.getCollaborators = (req, res, next) => {
 };
 
 
-module.exports = { projectController };
+module.exports = projectController;

@@ -37,7 +37,7 @@ passport.use(
        * done - after getting successully authenticated - run this callback function
        * routes to 'authenticated page' w/ correct user information
        **/
-
+      console.log(accessToken)
       const { username } = profile;
       // console.log('PASSPORT CALLBACK FIRED FOR USER: ', username);
 

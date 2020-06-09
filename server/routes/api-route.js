@@ -7,43 +7,8 @@ const dbController = require("../controllers/dbController");
 const taskController = require("../controllers/taskController.js");
 const authController = require("../controllers/authController.js");
 const projectController = require("../controllers/projectController.js");
-<<<<<<< HEAD
 
 /**
- * @route   GET /api
- * @desc    Testing GET requests for api route
- * @access  Public
- */
-router.get("/", (req, res) => {
-  res.sendStatus(200);
-});
-
-// What is this route used for? (KP)
-
-/**
- * @route   GET /api
- * @desc    Testing GET requests for api route
- * @access  Public
- */
-router.post("/", (req, res) => {
-  res.send("Hitting api POST endpoint");
-});
-
-// /**
-//  * @route   POST /api/create-project
-//  * @desc    Adds the project information to projects and users_projects tables
-//  * @desc    and adds associated collaborators to users and users_projects tables
-//  * @access  Public (should be private)
-//  */
-// router.post('/create-project/'), (req,res,next) => {
-
-// }
-
-/**
-=======
-
-/**
->>>>>>> 6a526402611f9381141a642acee5ec117ba96fe8
  * @route   GET /api/projects/
  * @desc    Returns an array of projects associated with a particular user
  * @access  Public (should be private)
@@ -99,23 +64,14 @@ router.get("/tasks/:project_id", async (req, res) => {
  * @access  Public (should be private)
  */
 router.post(
-<<<<<<< HEAD
-  '/create-project',
-=======
   "/create-project",
->>>>>>> 6a526402611f9381141a642acee5ec117ba96fe8
   dbController.getUserFromUserIdCookie,
   authController.getAccessToken,
   projectController.getRepos,
   projectController.doesRepoExist,
   projectController.getRepoOwner,
   projectController.getCollaborators,
-<<<<<<< HEAD
-  // middleware
-  /*dbController.getUserFromUserIdCookie,*/ async (req, res) => {
-=======
   async (req, res) => {
->>>>>>> 6a526402611f9381141a642acee5ec117ba96fe8
     try {
       // Temporary hardcoded user id -> waiting to test with the actual browser cookies
       // const userId = '14e33237-9cbb-43d3-9332-2e5641d712fb';
@@ -178,11 +134,7 @@ router.post(
  * @desc    Create a new task for a particular project
  * @access  Public (should be private)
  */
-<<<<<<< HEAD
-router.post('/tasks/:project_id', async (req, res) => {
-=======
 router.post("/tasks/:project_id", async (req, res) => {
->>>>>>> 6a526402611f9381141a642acee5ec117ba96fe8
   try {
     // Get project id
     const projectId = req.params.project_id;
