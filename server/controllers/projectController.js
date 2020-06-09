@@ -2,17 +2,23 @@ const fetch = require('node-fetch');
 
 const projectController = {};
 
+
+const db = require('../db/postgres.js')
 // add something to check if a repo exists andd send a response back to the user. res.json()
 
 /**
  * @middleware  GET /users/:username/repos from github api
  * @desc    Gets a list of respositories accessible to the user and saves it to res.locals.repos
  */
-projectController.getRepos = (req, res, next) => {
+projectController.getRepos = async (req, res, next) => {
   console.log('in get repos')
   const { accessToken } = res.locals;
-  const { username } = res.locals;
+  // const { username } = res.locals;
+  // const { user_id: userId } = res.locals;
+  console.log(res.locals)
 
+  // const query = `SELECT githandle FROM users WHERE id='${userId}';`;
+  // const username = await db.query(query)
   // var config = {
   //   method: 'get',
   //   url: 'https://api.github.com/users/ronellecaguioa/repos',
@@ -22,7 +28,7 @@ projectController.getRepos = (req, res, next) => {
   //   },
   //   data : data
   // };
-
+  console.log('USERNAME: ' ,username)
   fetch(`https://api.github.com/users/${username}/repos`, {
     method: 'get',
     headers: {
@@ -30,10 +36,10 @@ projectController.getRepos = (req, res, next) => {
     }
     // params: { access_token: accessToken },
   })
-    .then(res => res.json())
+  .then(res=>res.json())
     .then(data => {
-      console.log('IN FETCH FOR REPOS =>>', data)
-      res.locals.allRepos = [...data];
+      console.log(data)
+      res.locals.allRepos = data;
       next();
     })
     .catch(err => console.log('ERROR: ', err));
