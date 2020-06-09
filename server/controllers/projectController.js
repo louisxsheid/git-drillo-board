@@ -90,3 +90,6 @@ projectController.getCollaborators = (req, res, next) => {
     })
     .catch((err) => console.log("ERROR: ", err));
 };
+
+
+module.exports = { projectController };

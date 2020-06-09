@@ -5,12 +5,12 @@ require("dotenv/config");
 // What is this route used for? (KP)
 
 // Bring in controllers
-const dbController = require('../controllers/dbController');
-const taskController = require('../controllers/taskController.js');
+const dbController = require("../controllers/dbController");
+const taskController = require("../controllers/taskController.js");
+const authController = require("../controllers/authController.js");
+const projectController = require("../controllers/projectController.js");
 
 /**
-<<<<<<< HEAD
-=======
  * @route   GET /api
  * @desc    Testing GET requests for api route
  * @access  Public
@@ -41,7 +41,6 @@ router.post("/", (req, res) => {
 // }
 
 /**
->>>>>>> ee32f6fa6a66b820d01e8a58a8c58b34ec1e52d4
  * @route   GET /api/projects/
  * @desc    Returns an array of projects associated with a particular user
  * @access  Public (should be private)
@@ -98,6 +97,12 @@ router.get("/tasks/:project_id", async (req, res) => {
  */
 router.post(
   '/create-project',
+  dbController.getUserFromUserIdCookie,
+  authController.getAccessToken,
+  projectController.getRepos,
+  projectController.doesRepoExist,
+  projectController.getRepoOwner,
+  projectController.getCollaborators,
   // middleware
   /*dbController.getUserFromUserIdCookie,*/ async (req, res) => {
     try {
